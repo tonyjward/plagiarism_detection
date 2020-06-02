@@ -130,5 +130,6 @@ dmypy.json
 
 # Data files
 data/
-*.zip
+*.zip*
 __MACOSX/
+plagiarism_data/

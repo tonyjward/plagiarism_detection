@@ -133,3 +133,4 @@ data/
 *.zip*
 __MACOSX/
 plagiarism_data/
+*.p

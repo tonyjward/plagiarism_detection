@@ -48,10 +48,6 @@ text_name = 'text_' + SEARCH_TERM.replace(' ', '_') +'.p'
 pickle.dump(links, open(os.path.join(SAVE_DIR, links_name), "wb"))
 pickle.dump(text, open(os.path.join(SAVE_DIR, text_name), "wb"))
 
-# -----------------------------------------------------------------------------
-# 5. save results
 
-#links = pickle.load(open("scraping/data/links3.p", "rb"))
-#text = pickle.load(open("scraping/data/text3.p", "rb"))
 
 

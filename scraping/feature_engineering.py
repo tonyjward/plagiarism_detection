@@ -59,5 +59,5 @@ for i in range(len(text)):
     print(i)
     clean, junk = remove_junk(text[i])
 
-
-
+text[50]
+links[20]

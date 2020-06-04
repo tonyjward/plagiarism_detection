@@ -6,6 +6,7 @@ Created on Mon Jun  1 15:12:47 2020
 """
 
 import time
+import sys
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -126,6 +127,7 @@ def get_article_text(links, driver, pause_time = None, article_limit = None):
             print(f"We got an error for link at position {i}")
             print(sys.exc_info()[0])
             links_failed.append(link)
+            pass
         finally:
             if i == article_limit:
                 print(f'We reached the article limit of {article_limit}')

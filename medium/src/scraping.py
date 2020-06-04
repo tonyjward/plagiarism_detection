@@ -88,13 +88,12 @@ def get_links(driver, html_class = "button button--smaller button--chromeless u-
     
     return list(unique_links)
 
-def get_article_text(links, driver, pause_time = None, article_limit = None):
+def get_article_text(links, pause_time = None, article_limit = None):
     '''
     Gets article text from a series of html links
     
     Arguments:
         links       : an list of html links
-        driver      : an object of class webdriver from the Selenium package
         pause_time  : float - number of seconds to wait between articles
         
     Returns:
@@ -102,6 +101,13 @@ def get_article_text(links, driver, pause_time = None, article_limit = None):
             links_worked: (list) of html links we could retrieve text for
             articles:     (list) of article texts
             links_failed  (list) of html links we could not retrieve text
+
+    Approach:
+        We handle errors gracefully. If we can't get the text from a html link
+        for whatever reason we will try again making 5 attempts in total. 
+        For each attempt we will re instantiate the web driver.
+        If this doesn't fix it we'll add that link to the links_failed list 
+        which is returned to the user
     '''        
         
     if len(links) == 0:
@@ -111,28 +117,44 @@ def get_article_text(links, driver, pause_time = None, article_limit = None):
     articles = []
     links_failed = []
 
+    # instantiate a selenium web driver
+    driver = get_driver()
+    
+    # try to obtain the text for each link
     i = 0
-
     for link in links:
         print(f'Article {i} of {len(links)}')
         print(link)
         
-        try:
-            driver.get(link)
-            outer_html = driver.execute_script("return document.documentElement.outerHTML")
-            soup = BeautifulSoup(outer_html, 'html.parser')
-            articles.append(soup.get_text())
-            links_worked.append(link)
-        except:           
+        # we will make 5 attempts.
+        # Each time it fails we'll re-instantiate the web driver
+        for attempt in range(5):
+            try:
+                driver.get(link)
+                outer_html = driver.execute_script("return document.documentElement.outerHTML")
+                soup = BeautifulSoup(outer_html, 'html.parser')
+                articles.append(soup.get_text())
+                links_worked.append(link)
+            except:
+                driver = get_driver()
+            else:
+                # the try clause worked so we can stop attempting to get the article
+                i += 1
+                break
+        else:
+            # we failed all the attempts at getting the article- deal with the consequences
             print(f"We got an error for link at position {i}")
             print(sys.exc_info()[0])
             links_failed.append(link)
-            pass
-        finally:
-            if i == article_limit:
-                print(f'We reached the article limit of {article_limit}')
-                return {'links_worked': links_worked, 'articles': articles, 'links_failed': links_failed}
             i += 1
+
+        # stop early if required
+        if i == article_limit:
+            print(f'We reached the article limit of {article_limit}')
+            driver.close()
+            return {'links_worked': links_worked, 'articles': articles, 'links_failed': links_failed}
+
+    driver.close()         
         
     return {'links_worked': links_worked, 'articles': articles, 'links_failed': links_failed}
     

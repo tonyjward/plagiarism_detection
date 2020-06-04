@@ -62,14 +62,11 @@ def scroll_down(driver, pause_time = None, scroll_limit = None):
         
 def get_links(driver, html_class = "button button--smaller button--chromeless u-baseColor--buttonNormal"):
     '''
-    Scrolls down to the end of the search results
-    Code based on:
-    https://stackoverflow.com/questions/20986631/how-can-i-scroll-a-web-page-using-selenium-webdriver-in-python
+    Gets all html links relating to a specific html_class for an instantiated webdriver
     
     Arguments:
-        driver      : an object of class webdriver from the Selenium package
-        pause_time  : float - number of seconds to wait between scrolls
-        scroll_limit: int - limit the number of scrolls (useful for testing)
+        driver      : (webdriver) an object of class webdriver from the Selenium package
+        html_class  : (str) the class of html links to return
         
     Return:
             list of strings with each element a html link

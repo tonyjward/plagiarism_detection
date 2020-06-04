@@ -7,11 +7,10 @@ Created on Tue Jun  2 12:52:57 2020
 
 import pickle
 import os
-from helper import scroll_down, get_links, get_article_text
-from helper import get_driver
+from scraping import scroll_down, get_links, get_article_text, get_driver
 
 # specify url
-SEARCH_TERM = 'deep learning'
+SEARCH_TERM = 'drawing pin'
 SAVE_DIR = 'data'
 
 if __name__ == '__main__':
@@ -26,29 +25,24 @@ if __name__ == '__main__':
     driver.get(url)
     assert "Medium" in driver.page_source
 
-    # page is loaded dynamically so we need to scroll to bottom first
-    # scroll_down(driver, pause_time = 1, scroll_limit = 5)
-    scroll_down(driver, pause_time = 3)
-
+    # scroll down to bottom of page
+    scroll_down(driver, pause_time = 3) # scroll_limit option available
+    
     # get links to all articles 
     links = get_links(driver)
-    links
 
-    # reinstantiate driver (not sure why this is needed again)
-    driver = get_driver()
-
-    # text = get_article_text(links, driver, pause_time = 4, article_limit = 5)
-    text = get_article_text(links, driver, pause_time = 4)        
-
-    # save results
+    # save links
     if not os.path.exists(SAVE_DIR):
         os.makedirs(SAVE_DIR)
+    filename_links = SEARCH_TERM.replace(' ', '_') +'_links.p'
+    pickle.dump(links, open(os.path.join(SAVE_DIR, filename_links), "wb"))
 
-    links_name = 'links_' + SEARCH_TERM.replace(' ', '_') +'.p'
-    text_name = 'text_' + SEARCH_TERM.replace(' ', '_') +'.p'
-
-    pickle.dump(links, open(os.path.join(SAVE_DIR, links_name), "wb"))
-    pickle.dump(text, open(os.path.join(SAVE_DIR, text_name), "wb"))
+    # get article text
+    results = get_article_text(links, pause_time = 4)  # article_limit option available      
+      
+    # save results
+    filename_results = SEARCH_TERM.replace(' ', '_') +'_results.p'   
+    pickle.dump(results, open(os.path.join(SAVE_DIR, filename_results), "wb"))
 
 
 

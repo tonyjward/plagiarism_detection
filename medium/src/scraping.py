@@ -97,13 +97,19 @@ def get_article_text(links, driver, pause_time = None, article_limit = None):
         pause_time  : float - number of seconds to wait between articles
         
     Returns:
-        a list containing the article text for each link
+        a dictionary containing the following
+            links_worked: (list) of html links we could retrieve text for
+            articles:     (list) of article texts
+            links_failed  (list) of html links we could not retrieve text
     '''        
         
     if len(links) == 0:
         raise ValueError('You provided an empty list')
     
-    text = []
+    links_worked = []
+    articles = []
+    links_failed = []
+
     i = 0
 
     for link in links:
@@ -114,19 +120,20 @@ def get_article_text(links, driver, pause_time = None, article_limit = None):
             driver.get(link)
             outer_html = driver.execute_script("return document.documentElement.outerHTML")
             soup = BeautifulSoup(outer_html, 'html.parser')
-            text.append(soup.get_text())
-        except Error as e:
+            articles.append(soup.get_text())
+            links_worked.append(link)
+        except:           
             print(f"We got an error for link at position {i}")
-            print(str(e))
+            print(sys.exc_info()[0])
+            links_failed.append(link)
         finally:
             if i == article_limit:
                 print(f'We reached the article limit of {article_limit}')
-                return text
+                return {'links_worked': links_worked, 'articles': articles, 'links_failed': links_failed}
             i += 1
         
-    assert len(links) == len(text)
+    return {'links_worked': links_worked, 'articles': articles, 'links_failed': links_failed}
     
-    return text
 
 
     

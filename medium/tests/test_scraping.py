@@ -13,8 +13,10 @@ class Test_get_articles(unittest.TestCase):
         self.links = ['https://statcore.co.uk/']
 
     def test_get_articles(self):
-        text = get_article_text(self.links, self.driver, pause_time = 4)
-        self.assertTrue('We provide innovative ways to help you use your data more effectively' in text[0])
+        result = get_article_text(self.links, self.driver, pause_time = 4)
+        self.assertTrue(result['links_worked'][0] == 'https://statcore.co.uk/')
+        self.assertTrue('We provide innovative ways to help you use your data more effectively' in result['articles'][0])
+        self.assertTrue(len(result['links_failed']) == 0)
 
     def tearDown(self):
         'Close selenium web driver once we are finished testing'

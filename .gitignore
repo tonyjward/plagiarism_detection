@@ -134,3 +134,6 @@ data/
 __MACOSX/
 plagiarism_data/
 *.p
+
+# Development Notebooks
+dev_notebooks/

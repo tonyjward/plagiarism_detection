@@ -1,7 +1,7 @@
 import pickle
 import os
 
-from utils.cleaning import remove_junk, clean_articles
+from src.utils.cleaning import remove_junk, clean_articles
 
 SEARCH_TERM = 'nasty surprise'
 SAVE_DIR = '../data'

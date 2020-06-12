@@ -7,7 +7,7 @@ import time
 import multiprocessing
 from tqdm import tqdm
 
-from utils.create_features import ngram_array, containment, calculate_containment, containment_wrapper
+from src.utils.create_features import ngram_array, containment, calculate_containment, containment_wrapper
 
 SEARCH_TERM = 'xgboost'
 SAVE_DIR = '../data'

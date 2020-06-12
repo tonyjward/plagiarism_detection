@@ -8,7 +8,7 @@ Created on Tue Jun  2 12:52:57 2020
 import pickle
 import os
 import time
-from utils.scraping import scroll_down, get_links, get_article_text, get_driver, login
+from src.utils.scraping import scroll_down, get_links, get_article_text, get_driver, login
 
 SEARCH_TERM = 'random forest'
 SAVE_DIR = '../data'

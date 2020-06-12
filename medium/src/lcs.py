@@ -7,7 +7,7 @@ import time
 import multiprocessing
 from tqdm import tqdm
 
-from utils.create_features import lcs_norm_word, lcs_wrapper
+from src.utils.create_features import lcs_norm_word, lcs_wrapper
 
 SEARCH_TERM = 'nasty surprise'
 SAVE_DIR = '../data'

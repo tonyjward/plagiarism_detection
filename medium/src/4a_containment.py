@@ -9,11 +9,10 @@ from tqdm import tqdm
 
 from utils.create_features import ngram_array, containment, calculate_containment, containment_wrapper
 
-SEARCH_TERM = 'nasty surprise'
+SEARCH_TERM = 'xgboost'
 SAVE_DIR = '../data'
 
-if __name__ =='__main__':
-
+def main():
     # load data
     filename = SEARCH_TERM.replace(' ', '_') +'_data_dict.p'  
     data_dict = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
@@ -32,6 +31,11 @@ if __name__ =='__main__':
     # save data
     filename = SEARCH_TERM.replace(' ', '_') +'_containment.p'   
     pickle.dump(pairwise_containment, open(os.path.join(SAVE_DIR, filename), "wb"))
+
+if __name__ =='__main__':
+    main()
+
+    
 
 
 

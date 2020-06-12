@@ -12,8 +12,7 @@ from utils.create_features import lcs_norm_word, lcs_wrapper
 SEARCH_TERM = 'nasty surprise'
 SAVE_DIR = '../data'
 
-if __name__ =='__main__':
-
+def main():
     # load data
     filename = SEARCH_TERM.replace(' ', '_') +'_data_dict.p'  
     data_dict = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
@@ -32,6 +31,11 @@ if __name__ =='__main__':
     # save data
     filename = SEARCH_TERM.replace(' ', '_') +'_lcs.p'   
     pickle.dump(pairwise_lcs, open(os.path.join(SAVE_DIR, filename), "wb"))
+
+if __name__ =='__main__':
+    main()
+
+
 
 
 

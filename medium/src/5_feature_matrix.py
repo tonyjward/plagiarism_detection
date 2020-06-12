@@ -4,11 +4,10 @@ import numpy as np
 import pandas as pd
 
 
-SEARCH_TERM = 'nasty surprise'
+SEARCH_TERM = 'xgboost'
 SAVE_DIR = '../data'
 
-if __name__ =='__main__':
-
+def main():
     print('Creating feature matrix')
     
     # load data frame
@@ -29,8 +28,16 @@ if __name__ =='__main__':
     df['c_20'] = pairwise_containment
     df['lcs_word'] = pairwise_lcs
 
+    # remove comparisons between the same author
+    df = df.loc[df['author_A'] != df['author_B']].reset_index(drop=True)
+
     # save data
     filename = SEARCH_TERM.replace(' ', '_') +'_feature_matrix.p'   
     pickle.dump(df, open(os.path.join(SAVE_DIR, filename), "wb"))
 
     print('Created feature matrix')
+
+if __name__ =='__main__':
+    main()
+
+    

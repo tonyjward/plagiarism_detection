@@ -10,13 +10,10 @@ import os
 import time
 from utils.scraping import scroll_down, get_links, get_article_text, get_driver, login
 
-# specify url
-# SEARCH_TERM = os.environ.get("SEARCH_TERM")
-SEARCH_TERM = 'nasty surprise'
+SEARCH_TERM = 'random forest'
 SAVE_DIR = '../data'
 
-if __name__ == '__main__':
-
+def main():
     # instantiate webdriver and log in to medium
     driver = get_driver()
     login(driver)
@@ -53,6 +50,11 @@ if __name__ == '__main__':
 
     # close webdriver
     driver.close()
+
+if __name__ == '__main__':
+    main()
+
+    
 
 
 

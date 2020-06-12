@@ -4,11 +4,10 @@ import numpy as np
 import itertools
 import pandas as pd
 
-SEARCH_TERM = 'nasty surprise'
+SEARCH_TERM = 'xgboost'
 SAVE_DIR = '../data'
 
-if __name__ =='__main__':
-
+def main():
     # load data
     filename = SEARCH_TERM.replace(' ', '_') +'_articles_clean.p'  
     articles = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
@@ -51,6 +50,10 @@ if __name__ =='__main__':
     pickle.dump(data_dict, open(os.path.join(SAVE_DIR, filename), "wb"))
 
     print ('Dataframe and article_paris successfully created')
+
+if __name__ =='__main__':
+    main()
+    
 
 
 

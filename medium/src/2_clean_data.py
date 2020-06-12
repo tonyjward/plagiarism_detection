@@ -6,8 +6,7 @@ from utils.cleaning import remove_junk, clean_articles
 SEARCH_TERM = 'nasty surprise'
 SAVE_DIR = '../data'
 
-if __name__ =='__main__':
-
+def main():
     # load data
     filename_links = SEARCH_TERM.replace(' ', '_') +'_links.p'
     filename_articles = SEARCH_TERM.replace(' ', '_') +'_articles.p' 
@@ -34,6 +33,11 @@ if __name__ =='__main__':
     print('Data has been seperated into author, article and junk')
     if author_list.count('Blank') > 0:
         print(f"There are {author_list.count('Blank')} articles with  data issues - these are identifed as 'Blank'")
+
+if __name__ =='__main__':
+    main()
+
+    
 
         
 

@@ -1,5 +1,6 @@
 import pickle
 import os
+from sys import argv
 import numpy as np
 import itertools
 import pandas as pd
@@ -9,12 +10,12 @@ from tqdm import tqdm
 
 from src.utils.create_features import ngram_array, containment, calculate_containment, containment_wrapper
 
-SEARCH_TERM = 'xgboost'
+script, search_term = argv
 SAVE_DIR = '../data'
 
-def main():
+def main(search_term):
     # load data
-    filename = SEARCH_TERM.replace(' ', '_') +'_data_dict.p'  
+    filename = search_term.replace(' ', '_') +'_data_dict.p'  
     data_dict = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
     article_pairs = data_dict['article_pairs']
 
@@ -29,11 +30,11 @@ def main():
         pool.join()
 
     # save data
-    filename = SEARCH_TERM.replace(' ', '_') +'_containment.p'   
+    filename = search_term.replace(' ', '_') +'_containment.p'   
     pickle.dump(pairwise_containment, open(os.path.join(SAVE_DIR, filename), "wb"))
 
 if __name__ =='__main__':
-    main()
+    main(search_term)
 
     
 

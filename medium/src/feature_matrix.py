@@ -1,26 +1,27 @@
 import pickle
 import os
+from sys import argv
 import numpy as np
 import pandas as pd
 
 
-SEARCH_TERM = 'xgboost'
+script, search_term = argv
 SAVE_DIR = '../data'
 
-def main():
+def main(search_term):
     print('Creating feature matrix')
     
     # load data frame
-    filename = SEARCH_TERM.replace(' ', '_') +'_data_dict.p'  
+    filename = search_term.replace(' ', '_') +'_data_dict.p'  
     data_dict = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
     df = data_dict['df']
 
     # load containment
-    filename = SEARCH_TERM.replace(' ', '_') +'_containment.p'  
+    filename = search_term.replace(' ', '_') +'_containment.p'  
     pairwise_containment = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
 
     # load containment
-    filename = SEARCH_TERM.replace(' ', '_') +'_lcs.p'  
+    filename = search_term.replace(' ', '_') +'_lcs.p'  
     pairwise_lcs = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
 
     # join data
@@ -32,12 +33,12 @@ def main():
     df = df.loc[df['author_A'] != df['author_B']].reset_index(drop=True)
 
     # save data
-    filename = SEARCH_TERM.replace(' ', '_') +'_feature_matrix.p'   
+    filename = search_term.replace(' ', '_') +'_feature_matrix.p'   
     pickle.dump(df, open(os.path.join(SAVE_DIR, filename), "wb"))
 
     print('Created feature matrix')
 
 if __name__ =='__main__':
-    main()
+    main(search_term)
 
     

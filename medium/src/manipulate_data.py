@@ -1,15 +1,16 @@
 import pickle
 import os
+from sys import argv
 import numpy as np
 import itertools
 import pandas as pd
 
-SEARCH_TERM = 'xgboost'
+script, search_term = argv
 SAVE_DIR = '../data'
 
-def main():
+def main(search_term):
     # load data
-    filename = SEARCH_TERM.replace(' ', '_') +'_articles_clean.p'  
+    filename = search_term.replace(' ', '_') +'_articles_clean.p'  
     articles = pickle.load(open(os.path.join(SAVE_DIR, filename), "rb"))
 
     assert len(articles['links_worked']) == len(articles['articles']) == len(articles['author']), 'links/articles/authors should all be same length'
@@ -46,13 +47,13 @@ def main():
     data_dict = {'df':df, 'article_pairs':article_pairs}
 
     # save data
-    filename = SEARCH_TERM.replace(' ', '_') +'_data_dict.p'   
+    filename = search_term.replace(' ', '_') +'_data_dict.p'   
     pickle.dump(data_dict, open(os.path.join(SAVE_DIR, filename), "wb"))
 
     print ('Dataframe and article_paris successfully created')
 
 if __name__ =='__main__':
-    main()
+    main(search_term)
     
 
 

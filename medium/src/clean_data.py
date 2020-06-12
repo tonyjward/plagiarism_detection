@@ -1,15 +1,16 @@
 import pickle
 import os
+from sys import argv
 
 from src.utils.cleaning import remove_junk, clean_articles
 
-SEARCH_TERM = 'nasty surprise'
+script, search_term = argv
 SAVE_DIR = '../data'
 
-def main():
+def main(search_term):
     # load data
-    filename_links = SEARCH_TERM.replace(' ', '_') +'_links.p'
-    filename_articles = SEARCH_TERM.replace(' ', '_') +'_articles.p' 
+    filename_links = search_term.replace(' ', '_') +'_links.p'
+    filename_articles = search_term.replace(' ', '_') +'_articles.p' 
     links = pickle.load(open(os.path.join(SAVE_DIR, filename_links), "rb"))  
     articles = pickle.load(open(os.path.join(SAVE_DIR, filename_articles), "rb"))
 
@@ -27,7 +28,7 @@ def main():
     articles_clean = {'links_worked': articles['links_worked'], 'articles': article_list, 'author': author_list, 'junk': junk_list, 'links_failed': articles['links_failed']}
 
     # save data
-    filename = SEARCH_TERM.replace(' ', '_') +'_articles_clean.p'   
+    filename = search_term.replace(' ', '_') +'_articles_clean.p'   
     pickle.dump(articles_clean, open(os.path.join(SAVE_DIR, filename), "wb"))
 
     print('Data has been seperated into author, article and junk')
@@ -35,7 +36,7 @@ def main():
         print(f"There are {author_list.count('Blank')} articles with  data issues - these are identifed as 'Blank'")
 
 if __name__ =='__main__':
-    main()
+    main(search_term)
 
     
 

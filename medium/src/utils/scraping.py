@@ -94,7 +94,7 @@ def login(driver):
     'Login via the twitter api'
 
     # get twitter credentials
-    username = input('What is your twitter email')
+    username = input('What is your twitter email: ')
     password = getpass()
 
     # login

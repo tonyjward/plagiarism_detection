@@ -8,10 +8,11 @@ Created on Tue Jun  2 12:52:57 2020
 import pickle
 import os
 import time
-from scraping import scroll_down, get_links, get_article_text, get_driver, login
+from utils.scraping import scroll_down, get_links, get_article_text, get_driver, login
 
 # specify url
-SEARCH_TERM = 'drawing pin'
+# SEARCH_TERM = os.environ.get("SEARCH_TERM")
+SEARCH_TERM = 'nasty surprise'
 SAVE_DIR = '../data'
 
 if __name__ == '__main__':
@@ -40,15 +41,15 @@ if __name__ == '__main__':
     time.sleep(5)
 
     # get article text
-    results = get_article_text(links, driver, pause_time = 3)  # article_limit option available   
+    articles = get_article_text(links, driver, pause_time = 3)  # article_limit option available   
       
     # save results
-    filename_results = SEARCH_TERM.replace(' ', '_') +'_results.p'   
-    pickle.dump(results, open(os.path.join(SAVE_DIR, filename_results), "wb"))
+    filename = SEARCH_TERM.replace(' ', '_') +'_articles.p'   
+    pickle.dump(articles, open(os.path.join(SAVE_DIR, filename), "wb"))
 
     # Inform user of success
     print(f'Scraping for {SEARCH_TERM} was successful')
-    print(f"We scraped {len(results['links_worked'])} articles and had {len(results['links_failed'])} failures")
+    print(f"We scraped {len(articles['links_worked'])} articles and had {len(articles['links_failed'])} failures")
 
     # close webdriver
     driver.close()

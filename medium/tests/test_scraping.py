@@ -1,6 +1,6 @@
 import unittest
 
-from src.scraping import get_article_text, get_driver
+from src.utils.scraping import get_article_text, get_driver
 
 # Before running these tests make sure you have a firefox selenium driver container running
 # sudo docker run -d --rm --name standalone-firefox -p 4444:4444 -p 5900:5900 --shm-size 2g selenium/standalone-firefox-debug:3.141.59
@@ -34,18 +34,3 @@ class Test_get_articles(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
-
-# class Test_1_solution(unittest.TestCase):
-#     def setUp(self):
-#         self.predictions = np.array([1, 2, 3])
-#         self.actuals = np.array([0.9, 2.2, 2.7])
-
-#     def test_Rmse(self):
-#         rmse = Rmse(self.predictions, self.actuals)
-#         self.assertIsNone(np.testing.assert_allclose(rmse, 0.374165739))
-
-#     def test_Mae(self):
-#         mae = Mae(self.predictions, self.actuals)
-#         self.assertIsNone(np.testing.assert_allclose(mae, 0.2))

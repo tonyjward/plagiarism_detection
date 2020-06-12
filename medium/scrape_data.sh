@@ -1,4 +1,6 @@
 #!/bin/sh
-export SEARCH_TERM='Nasty Suprise'
 
-python -m src.1_scrape_medium
+python -m src.scrape "$1"
+python -m src.clean_data "$1"
+python -m src.manipulate_data "$1"
+

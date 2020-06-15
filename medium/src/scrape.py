@@ -12,50 +12,55 @@ from sys import argv
 
 from src.utils.scraping import scroll_down, get_links, get_article_text, get_driver, login
 
-script, search_term = argv
+script, search_terms, save_dir = argv
+search_list = list(map(str, search_terms.strip('[]').split(',')))
 
-SAVE_DIR = '../data'
-
-def main(search_term):
+def main(search_list, pause_time = 3):
     # instantiate webdriver and log in to medium
     driver = get_driver()
     login(driver)
 
-    # search for articles
-    url = 'https://medium.com/search?q=' + '%22' + search_term.replace(' ', '%20')  +'%22'
-    driver.get(url)
-    assert "Medium" in driver.page_source
-
-    # scroll down to bottom of page
-    scroll_down(driver, pause_time = 3) # scroll_limit option available
+    for search_term in search_list:
     
-    # get links to all articles 
-    links = get_links(driver)
+        # search for articles
+        try:
+            url = 'https://medium.com/search?q=' + '%22' + search_term.replace(' ', '%20')  +'%22'
+            driver.get(url)
+            assert "Medium" in driver.page_source
 
-    # save links
-    if not os.path.exists(SAVE_DIR):
-        os.makedirs(SAVE_DIR)
-    filename_links = search_term.replace(' ', '_') +'_links.p'
-    pickle.dump(links, open(os.path.join(SAVE_DIR, filename_links), "wb"))
+            # scroll down to bottom of page
+            scroll_down(driver, pause_time = pause_time) # scroll_limit option available
+            
+            # get links to all articles 
+            links = get_links(driver)
 
-    time.sleep(5)
+            # save links
+            if not os.path.exists(save_dir):
+                os.makedirs(save_dir)
+            filename_links = search_term.replace(' ', '_') +'_links.p'
+            pickle.dump(links, open(os.path.join(save_dir, filename_links), "wb"))
 
-    # get article text
-    articles = get_article_text(links, driver, pause_time = 3)  # article_limit option available   
-      
-    # save results
-    filename = search_term.replace(' ', '_') +'_articles.p'   
-    pickle.dump(articles, open(os.path.join(SAVE_DIR, filename), "wb"))
+            time.sleep(5)
 
-    # Inform user of success
-    print(f'Scraping for {search_term} was successful')
-    print(f"We scraped {len(articles['links_worked'])} articles and had {len(articles['links_failed'])} failures")
+            # get article text
+            articles = get_article_text(links, driver, pause_time = pause_time)  # article_limit option available   
+            
+            # save results
+            filename = search_term.replace(' ', '_') +'_articles.p'   
+            pickle.dump(articles, open(os.path.join(save_dir, filename), "wb"))
+
+            # Inform user of success
+            print(f'Scraping for {search_term} was successful')
+            print(f"We scraped {len(articles['links_worked'])} articles and had {len(articles['links_failed'])} failures")
+        except Exception:
+            print (f"We failed to scrape data for {search_term}")
+            pass
 
     # close webdriver
     driver.close()
 
 if __name__ == '__main__':
-    main(search_term)
+    main(search_list)
 
     
 

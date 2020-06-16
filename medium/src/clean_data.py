@@ -1,5 +1,7 @@
 import pickle
 import os
+import traceback
+import sys
 from sys import argv
 
 from src.utils.cleaning import remove_junk, clean_articles
@@ -41,6 +43,7 @@ def main(search_list):
                 print(f"There are {author_list.count('Blank')} articles with  data issues - these are identifed as 'Blank'")
         except Exception:
             print(f"We failed to clean data for {search_term}")
+            traceback.print_exc()
             pass
 
 if __name__ =='__main__':

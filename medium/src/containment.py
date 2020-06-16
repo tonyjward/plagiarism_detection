@@ -1,6 +1,8 @@
 import pickle
 import os
+import sys
 from sys import argv
+import traceback
 import numpy as np
 import itertools
 import pandas as pd
@@ -39,7 +41,8 @@ def main(search_list):
 
             print(f"Containment calculated for {search_term}")
         except Exception:
-            print(f"We failed to calculate containmnet for {search_term}")
+            print(f"We failed to calculate containmnet for {search_term}.")
+            traceback.print_exc()
             pass
 
 if __name__ =='__main__':

@@ -1,5 +1,7 @@
 import pickle
 import os
+import traceback
+import sys
 from sys import argv
 import numpy as np
 import itertools
@@ -40,6 +42,7 @@ def main(search_list):
             print(f"Calculate longest common subsequence for {search_term}")
         except Exception:
             print(f"We failed to calculate longest common subsequence for {search_term}")
+            traceback.print_exc()
             pass
 
 if __name__ =='__main__':

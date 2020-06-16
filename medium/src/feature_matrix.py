@@ -1,5 +1,7 @@
 import pickle
 import os
+import traceback
+import sys
 from sys import argv
 import numpy as np
 import pandas as pd
@@ -41,6 +43,7 @@ def main(search_list):
             print(f'Created feature matrix for {search_term}')
         except Exception:
             print(f"We failed to create the feature matrix for {search_term}")
+            traceback.print_exc()
             pass
 
 if __name__ =='__main__':

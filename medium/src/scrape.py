@@ -4,10 +4,11 @@ Created on Tue Jun  2 12:52:57 2020
 
 @author: tony
 """
-
 import pickle
 import os
 import time
+import traceback
+import sys
 from sys import argv
 
 from src.utils.scraping import scroll_down, get_links, get_article_text, get_driver, login
@@ -53,7 +54,8 @@ def main(search_list, pause_time = 3):
             print(f'Scraping for {search_term} was successful')
             print(f"We scraped {len(articles['links_worked'])} articles and had {len(articles['links_failed'])} failures")
         except Exception:
-            print (f"We failed to scrape data for {search_term}")
+            print(f"We failed to scrape data for {search_term}.")
+            traceback.print_exc()
             pass
 
     # close webdriver

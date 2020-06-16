@@ -5,5 +5,8 @@ first run this
 to start a selenium server
 
 run using
-`./scrape_data.sh '[drawing pin, 'nasty surprise]' data
-./check_plagiarism.sh '[drawing pin, nasty surprise]' data`
+`./scrape_data.sh '[logistic regression,naive bayes]' data`
+
+Then scale up the machine
+
+`./check_plagiarism.sh '[logistic regression,naive bayes]' data`

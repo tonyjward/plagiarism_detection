@@ -17,7 +17,7 @@ Researchers at the University of Sheffield created a corpus in which plagiarism 
 
 >Plagiarism is widely acknowledged to be a significant and increasing problem for higher education institutions. To test and develop systems to detect plagiarism, evaluation resources are required. To address this, we created a corpus consisting of short (200-300 words) answers to Computer Science questions in which plagiarism has been simulated. The corpus has been designed to represent varying degrees of plagiarism and we envisage will be a useful addition to the set of resources available for the evaluation of plagiarism detection systems. Although a small collection of plagiarised texts, this corpus has been systematically created and we hope will provide a 'blueprint' for the construction of further resources.
 
-> **Citation for data**: Clough, P. and Stevenson, M. Developing A Corpus of Plagiarised Short Answers, Language Resources and Evaluation: Special Issue on Plagiarism and Authorship Analysis, In Press. [Download(https://ir.shef.ac.uk/cloughie/resources/plagiarism_corpus.html)
+> **Citation for data**: Clough, P. and Stevenson, M. Developing A Corpus of Plagiarised Short Answers, Language Resources and Evaluation: Special Issue on Plagiarism and Authorship Analysis, In Press. [Download](https://ir.shef.ac.uk/cloughie/resources/plagiarism_corpus.html)
 
 An exploration of the data can be found [here](udacity/Solutions/1_Data_Exploration.ipynb)
 

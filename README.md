@@ -18,17 +18,17 @@ As part of the Udacity Machine Learning Engineer Nanodegree I was introduced to 
 
 Researchers at the University of Sheffield created a corpus in which plagiarism has been simulated:
 
->Plagiarism is widely acknowledged to be a significant and increasing problem for higher education institutions. To test and develop systems to detect plagiarism, evaluation resources are required. To address this, we created a corpus consisting of short (200-300 words) answers to Computer Science questions in which plagiarism has been simulated. The corpus has been designed to represent varying degrees of plagiarism and we envisage will be a useful addition to the set of resources available for the evaluation of plagiarism detection systems. Although a small collection of plagiarised texts, this corpus has been systematically created and we hope will provide a 'blueprint' for the construction of further resources.
+>Plagiarism is widely acknowledged to be a significant and increasing problem for higher education institutions. To test and develop systems to detect plagiarism, evaluation resources are required. To address this, we created a corpus consisting of short (200-300 words) answers to Computer Science questions in which plagiarism has been simulated. The corpus has been designed to represent varying degrees of plagiarism and we envisage will be a useful addition to the set of resources available for the evaluation of plagiarism detection systems. 
 
 > **Citation for data**: Clough, P. and Stevenson, M. Developing A Corpus of Plagiarised Short Answers, Language Resources and Evaluation: Special Issue on Plagiarism and Authorship Analysis, In Press. [Download](https://ir.shef.ac.uk/cloughie/resources/plagiarism_corpus.html)
 
-Some of the answers were not plagiarised i.e. the Wikepedia source text was not used to create the answer. For the plagiarised answers there were three levels of plagiarism
+The dataset contains a mixture of plagiarised and non-plagiarised answers. To create the non-plagiarised the Wikepedia source text was not used. For the plagiarised answers there were three levels of plagiarism
 
-1) cut: copy-pasted directly from the relevant Wikipedia source text.
-2) light: it is based on the Wikipedia source text and includes some copying and paraphrasing.
-3) heavy: it is based on the Wikipedia source text but expressed using different words and structure. 
+1) *cut:* answer copy-pasted directly from the relevant Wikipedia source text.
+2) *light:* answer based on the Wikipedia source text and includes some copying and paraphrasing.
+3) *heavy:* answer based on the Wikipedia source text but expressed using different words and structure. 
 
-An exploration of the data can be found [here](udacity/Solutions/1_Data_Exploration.ipynb)
+For an in-depth exploraiton of the data see [here](udacity/Solutions/1_Data_Exploration.ipynb)
 
 ## Feature Engineering
 
@@ -43,7 +43,7 @@ During the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_En
 Next I used Amazon Sagemaker and PyTorch to create a single layer feed forward network [that achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb)
 
 ## Application to Medium Articles
-Throughout the project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. I compared the articles pairwise, ranked them and brought back the top 5 most likely article combinations to contain plagiarism.
+Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. I compared the articles pairwise, ranked them and brought back the top 5 most likely article combinations to contain plagiarism.
 
 #### -- Project Status: Under Development
 

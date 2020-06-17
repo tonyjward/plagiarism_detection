@@ -36,14 +36,22 @@ During the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_En
 1) Containment
 2) Longest Commmon Subsequence
 
+Both metrics are normalized to be between zero and one. Metric definitions and a comparison of their releative strengths are provided in the feature engineering document. 
+
+A two way scatter plot of these features against a plagiarism indicator demonstrates how powerful these features are at separating the plagiarised from the non-plagiarised answers.
+
 ![image](images/two_way_scatter.png)
 
 ## Modelling
 
-Next I used Amazon Sagemaker and PyTorch to create a single layer feed forward network [that achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb)
+Next I used Amazon Sagemaker and PyTorch to create a single layer feed forward network [that achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb). 
 
 ## Application to Medium Articles
-Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. I compared the articles pairwise, ranked them and brought back the top 5 most likely article combinations to contain plagiarism.
+Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. 
+
+Sagemaker allows you to easily deploy your model as a web service, however that is overkill for our exploratory investigation. Addiitonally we would be making many thousands of model predictions, and I didn't want to incur any unnecessary AWS costs. I therefore [re-did the modelling  locally without Sagemaker](notebooks/1_train_model.ipynb), and saved the model so that it could be applied to the medium articles.
+
+I compared the articles pairwise, ranked them and [brought back the top 5 most likely article combinations to contain plagiarism](notebooks/2_results.ipynb)
 
 #### -- Project Status: Under Development
 

@@ -54,8 +54,9 @@ Sagemaker allows you to easily deploy your model as a web service, however that 
 I compared the articles pairwise, ranked them and [brought back the top 5 most likely article combinations to contain plagiarism](notebooks/2_results.ipynb)
 
 ### Methods Used
-* Webscraping (Selenium, Beautiful Soup)
-* Optimisation (OLS, Gradient Descent, Particle Swarm)
+* Webscraping (Selenium, Beautiful Soup, Docker)
+* Neural Networks (PyTorch)
+* Deployment (AWS Sagemaker)
 
 ### Technologies
 * Python

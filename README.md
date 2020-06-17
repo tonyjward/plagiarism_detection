@@ -9,7 +9,7 @@ The aim of this project is to use machine learning to identify plagiarism in art
 
 * **Xgboost:** [Article A](https://towardsdatascience.com/boosting-performance-with-xgboost-b4a8deadede7?source=search_post) vs [Article B.](https://medium.com/@knoldus/machinex-boosting-performance-with-xgboost-28c9f49998a6?source=search_post)
 
-More examples can be found in the [results section](notebooks/2_investigate_plagiarism.ipynb)
+More examples can be found in the [results section](notebooks/2_results.ipynb)
 
 # How I did it
 ## Source Data
@@ -19,14 +19,20 @@ Researchers at the University of Sheffield created a corpus in which plagiarism 
 
 > **Citation for data**: Clough, P. and Stevenson, M. Developing A Corpus of Plagiarised Short Answers, Language Resources and Evaluation: Special Issue on Plagiarism and Authorship Analysis, In Press. [Download](https://ir.shef.ac.uk/cloughie/resources/plagiarism_corpus.html)
 
+Some of the answers were not plagiarised i.e. the Wikepedia source text was not used to create the answer. For the plagiarised answers there were three levels of plagiarism
+
+1) cut: copy-pasted directly from the relevant Wikipedia source text.
+2) light: it is based on the Wikipedia source text and includes some copying and paraphrasing.
+3) heavy: it is based on the Wikipedia source text but expressed using different words and structure. 
+
 An exploration of the data can be found [here](udacity/Solutions/1_Data_Exploration.ipynb)
 
 ## Modelling
 
-As part of the Machine Learning Nanodegree I used the above data to build a binary classifier that could distinguish between plagiarised and non-plagiarised answers. 
-during the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) I calculated two similarity metrics which were used to compare each students answers to the source text.
+As part of the Udacity Machine Learning Nanodegree I used the above data to build a binary classifier that could distinguish between plagiarised and non-plagiarised answers. 
+During the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) I calculated two similarity metrics which were used to compare each students answers to the source text.
 1) Containment
-2) Longest Commmon Subsequcne
+2) Longest Commmon Subsequence
 
 TBC: SHOW IMAGE
 

@@ -1,5 +1,5 @@
-# Plagiarism Detection
-The aim of this project is to use machine learning to identify plagiarism in articles written about data science on the Medium platform. Here are some examples flagged by our model.
+# Plagiarism Detection with PyTorch
+The aim of this project is to use machine learning to identify plagiarism in articles written about data science on the Medium platform. Here are some examples flagged by our neural network.
 
 * **Logistic Regression:** [Article A](https://towardsdatascience.com/why-linear-regression-is-not-suitable-for-binary-classification-c64457be8e28?source=search_post) vs [Article B.](https://medium.com/@elenjubbas/linear-regression-vs-logistic-regression-for-classification-tasks-b42f85487857?source=search_post)
 
@@ -34,7 +34,7 @@ During the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_En
 1) Containment
 2) Longest Commmon Subsequence
 
-TBC: SHOW IMAGE
+![image](images/two_way_scatter.png)
 
 Next I used Amazon Sagemaker and PyTorch to create a single layer feed forward network [that achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb)
 

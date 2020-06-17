@@ -22,7 +22,7 @@ Researchers at the University of Sheffield created a corpus in which plagiarism 
 
 > **Citation for data**: Clough, P. and Stevenson, M. Developing A Corpus of Plagiarised Short Answers, Language Resources and Evaluation: Special Issue on Plagiarism and Authorship Analysis, In Press. [Download](https://ir.shef.ac.uk/cloughie/resources/plagiarism_corpus.html)
 
-The dataset contains a mixture of plagiarised and non-plagiarised answers. To create the non-plagiarised the Wikepedia source text was not used. For the plagiarised answers there were three levels of plagiarism
+The dataset contains a mixture of plagiarised and non-plagiarised answers. To create the non-plagiarised answers the Wikepedia source text was not used. For the plagiarised answers there were three levels of plagiarism
 
 1) *cut:* answer copy-pasted directly from the relevant Wikipedia source text.
 2) *light:* answer based on the Wikipedia source text and includes some copying and paraphrasing.
@@ -53,8 +53,6 @@ Sagemaker allows you to easily deploy your model as a web service, however that 
 
 I compared the articles pairwise, ranked them and [brought back the top 5 most likely article combinations to contain plagiarism](notebooks/2_results.ipynb)
 
-#### -- Project Status: Under Development
-
 ### Methods Used
 * Webscraping (Selenium, Beautiful Soup)
 * Optimisation (OLS, Gradient Descent, Particle Swarm)
@@ -68,12 +66,11 @@ Tests can be run from the main directory using
 python -m unittest discover
 ```
 
-## Contact
-* tony@statcore.co.uk
+# Who might want to use this project
+Anyone wanting to scrape Medium and search for plagiarism
 
-
-
-# Instructions
+# Set up Instructions
+Create a virtual environment and install the dependencies found in requirements.txt. You may need to install PyTorch manually - to do this follow the instructions here https://pytorch.org/get-started/locally/
 
 first run this
 `sudo docker run -d --rm --name standalone-firefox -p 4444:4444 -p 5900:5900 --shm-size 2g selenium/standalone-firefox-debug:3.141.59`
@@ -85,3 +82,6 @@ run using
 Then scale up the machine
 
 `./check_plagiarism.sh '[logistic regression,naive bayes]' data`
+
+## Contact
+* tony@statcore.co.uk

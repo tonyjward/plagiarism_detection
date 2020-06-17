@@ -12,7 +12,10 @@ The aim of this project is to use machine learning to identify plagiarism in art
 More examples can be found in the [results section](notebooks/2_results.ipynb)
 
 # How I did it
+As part of the Udacity Machine Learning Engineer Nanodegree I was introduced to a dataset containing simulated plagiarised answers to a series of computer science questions. I used this dataset to build a binary classifier in PyTorch, which I then applied to data science articles scraped from the Medium Platform.
+
 ## Source Data
+
 Researchers at the University of Sheffield created a corpus in which plagiarism has been simulated:
 
 >Plagiarism is widely acknowledged to be a significant and increasing problem for higher education institutions. To test and develop systems to detect plagiarism, evaluation resources are required. To address this, we created a corpus consisting of short (200-300 words) answers to Computer Science questions in which plagiarism has been simulated. The corpus has been designed to represent varying degrees of plagiarism and we envisage will be a useful addition to the set of resources available for the evaluation of plagiarism detection systems. Although a small collection of plagiarised texts, this corpus has been systematically created and we hope will provide a 'blueprint' for the construction of further resources.
@@ -27,14 +30,15 @@ Some of the answers were not plagiarised i.e. the Wikepedia source text was not 
 
 An exploration of the data can be found [here](udacity/Solutions/1_Data_Exploration.ipynb)
 
-## Modelling
+## Feature Engineering
 
-As part of the Udacity Machine Learning Nanodegree I used the above data to build a binary classifier that could distinguish between plagiarised and non-plagiarised answers. 
 During the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) I calculated two similarity metrics which were used to compare each students answers to the source text.
 1) Containment
 2) Longest Commmon Subsequence
 
 ![image](images/two_way_scatter.png)
+
+## Modelling
 
 Next I used Amazon Sagemaker and PyTorch to create a single layer feed forward network [that achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb)
 

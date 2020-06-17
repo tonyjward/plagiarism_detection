@@ -10,6 +10,9 @@ import pandas as pd
 script, search_terms, save_dir = argv
 search_list = list(map(str, search_terms.strip('[]').split(',')))
 
+def word_count(article):
+    return len(article.split())
+
 def main(search_list):
     for search_term in search_list:
         try:
@@ -35,6 +38,12 @@ def main(search_list):
 
             # remove comparisons between the same author
             df = df.loc[df['author_A'] != df['author_B']].reset_index(drop=True)
+
+            # calculate work count 
+            print('Calculating word count for article_A')
+            df['word_count_A'] = df['article_A'].map(word_count)
+            print('Calculating word count for article_B')
+            df['word_count_B'] = df['article_B'].map(word_count)
 
             # save data
             filename = search_term.replace(' ', '_') +'_feature_matrix.p'   

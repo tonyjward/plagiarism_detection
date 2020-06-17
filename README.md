@@ -70,18 +70,30 @@ python -m unittest discover
 Anyone wanting to scrape Medium and search for plagiarism
 
 # Set up Instructions
-Create a virtual environment and install the dependencies found in requirements.txt. You may need to install PyTorch manually - to do this follow the instructions here https://pytorch.org/get-started/locally/
+First create a virtual environment and install the dependencies found in requirements.txt. You may need to install PyTorch manually - to do this follow the instructions here https://pytorch.org/get-started/locally/
 
-first run this
+To perform web scraping you will need a selenium docker image. If required install docker as per https://docs.docker.com/install/linux/docker-ce/ubuntu/.
+
+To start the selenium webserver run
 `sudo docker run -d --rm --name standalone-firefox -p 4444:4444 -p 5900:5900 --shm-size 2g selenium/standalone-firefox-debug:3.141.59`
-to start a selenium server
 
-run using
+If you would like to see the webscraping happening on a browser (perhaps to debug or just because it looks cool) then install VNC Viewer https://www.realvnc.com/en/connect/download/viewer/ and point it at your machine. 
+
+We have separated the webscraping from the feature engineering phase, since the later is much more computationally intensive and benefits from multiple cores (we do this in parallel). So first start off with a low spec machine and launch the shell script
+
 `./scrape_data.sh '[logistic regression,naive bayes]' data`
 
-Then scale up the machine
+The first argument specifies the search term. Important to remember not to include leading spaces here. The second argument is the name of the directory that you would like to store the search results. If that directory does not exist it will be created for you.
+
+Having launched that scipt you will be asked to log in to medium using your twitter handle. (Before doing this please consult Mediums terms and conditions)
+
+![image](images/login.PNG)
+
+Once the data has been downloaded it is advisable to scale up your machine with as many cores as possible. Next begin the feature engineering phase by running the following
 
 `./check_plagiarism.sh '[logistic regression,naive bayes]' data`
+
+Finally train your own PyTorch classifier by running [this notebook](notebooks/1_train_model.ipynb) and examine the results using [this notebook](notebooks/2_results.ipynb)
 
 ## Contact
 * tony@statcore.co.uk

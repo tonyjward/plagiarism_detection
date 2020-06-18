@@ -1,5 +1,5 @@
 # Plagiarism Detection with PyTorch
-The aim of this project is to use machine learning to identify plagiarism in articles written about data science on the Medium platform. Here are some examples flagged by our neural network.
+The aim of this project is to use machine learning to identify plagiarism in articles written about Data Science on the Medium platform. Here are some examples flagged by our neural network.
 
 * **Logistic Regression:** [Article A](https://towardsdatascience.com/why-linear-regression-is-not-suitable-for-binary-classification-c64457be8e28?source=search_post) vs [Article B.](https://medium.com/@elenjubbas/linear-regression-vs-logistic-regression-for-classification-tasks-b42f85487857?source=search_post)
 
@@ -22,23 +22,23 @@ Researchers at the University of Sheffield created a corpus in which plagiarism 
 
 > **Citation for data**: Clough, P. and Stevenson, M. Developing A Corpus of Plagiarised Short Answers, Language Resources and Evaluation: Special Issue on Plagiarism and Authorship Analysis, In Press. [Download](https://ir.shef.ac.uk/cloughie/resources/plagiarism_corpus.html)
 
-The dataset contains a mixture of plagiarised and non-plagiarised answers. To create the non-plagiarised answers the Wikepedia source text was not used. For the plagiarised answers there were three levels of plagiarism
+The dataset contains a mixture of plagiarised and non-plagiarised answers. During the creation of the non-plagiarised answers the Wikepedia source text was not referred to. For the plagiarised answers there were three levels of plagiarism
 
 1) *cut:* answer copy-pasted directly from the relevant Wikipedia source text.
 2) *light:* answer based on the Wikipedia source text and includes some copying and paraphrasing.
 3) *heavy:* answer based on the Wikipedia source text but expressed using different words and structure. 
 
-For an in-depth exploraiton of the data see [here](udacity/Solutions/1_Data_Exploration.ipynb)
+To understand this data further see the section on [Data Exploration](udacity/Solutions/1_Data_Exploration.ipynb)
 
 ## Feature Engineering
 
-During the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) I calculated two similarity metrics which were used to compare each students answers to the source text.
-1) Containment
-2) Longest Commmon Subsequence
+In the [Feature Engineering](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) stage I used two similarity metrics to compare the student answers to the Wikepedia source text. (Click on the above links to watch a 2 minute video for each metric.)
+1) [Containment](https://www.youtube.com/watch?time_continue=103&v=FwmT_7fICn0&feature=emb_logo)
+2) [Longest Commmon Subsequence](https://www.youtube.com/watch?time_continue=37&v=yxXXwBKeYvU&feature=emb_logo)
 
-Both metrics are normalized to be between zero and one. Metric definitions and a comparison of their releative strengths are provided in the feature engineering document. 
+Both metrics are normalised to be between zero and one. We would expect that plagiarised answers would have high values for one or more of these metrics.
 
-A two way scatter plot of these features against a plagiarism indicator demonstrates how powerful these features are at separating the plagiarised from the non-plagiarised answers.
+A two way scatter suggests these will be useful features in a model to predict plagiarism.
 
 ![image](images/two_way_scatter.png)
 

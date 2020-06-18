@@ -58,9 +58,11 @@ Since the input feature space is two dimensional we can visualise the classifica
   <img src="images/classification_boundary.png" />
 </p>
 
-Red is low probability, Blue is high.
+Red is low probability, Blue is high. We can see that high values of the features are associated with a high probability of plagiarism.
 
 ## Application to Medium Articles
+Now we have a trained plagiarism model we can apply it to another set of documents. All we need to do is compute the relevant similarity metrics and pass these to the model's predict function.
+
 Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. 
 
 Sagemaker allows you to easily deploy your model as a web service, however that is overkill for our exploratory investigation. Additionally since we are comparing hundreds of articles pairwise  we would be making many thousands of model predictions. I didn't want to pay for an API endpoint to make these predictions and therefore [re-did the modelling  locally without Sagemaker](notebooks/1_train_model.ipynb).
@@ -108,6 +110,10 @@ Having launched that scipt you will be asked to log in to medium using your twit
 Once the data has been downloaded it is advisable to scale up your machine with as many cores as possible. Next begin the feature engineering phase by running the following
 
 `./check_plagiarism.sh '[logistic regression,naive bayes]' data`
+
+A progress bar will indicate how long you will have to wait. For reference on a F series Azure virtual machine with 32 cores it took 14 hours to calculate the longest common subsequence for the xgboost articles. Containment is calculated using vectorised operations and therefore is much faster - circa 5 minutes!
+
+![image](images/progress_bar.PNG)
 
 Finally train your own PyTorch classifier by running [this notebook](notebooks/1_train_model.ipynb) and examine the results using [this notebook](notebooks/2_results.ipynb)
 

@@ -1,5 +1,5 @@
 # Plagiarism Detection with PyTorch
-The aim of this project is to use machine learning to identify plagiarism in articles written about Data Science on the Medium platform. Here are some examples flagged by our neural network.
+The aim of this project is to use machine learning to identify plagiarism in articles written about Data Science on the Medium platform. My motivation for doing this was purely intellectual - could I do it? I have no interest in shaming/ousting people that commit plagiarism. Here are some examples flagged by our neural network.
 
 * **Logistic Regression:** [Article A](https://towardsdatascience.com/why-linear-regression-is-not-suitable-for-binary-classification-c64457be8e28?source=search_post) vs [Article B.](https://medium.com/@elenjubbas/linear-regression-vs-logistic-regression-for-classification-tasks-b42f85487857?source=search_post)
 
@@ -61,9 +61,9 @@ Since the input feature space is two dimensional we can visualise the classifica
 ## Application to Medium Articles
 Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. 
 
-Sagemaker allows you to easily deploy your model as a web service, however that is overkill for our exploratory investigation. Addiitonally we would be making many thousands of model predictions, and I didn't want to incur any unnecessary AWS costs. I therefore [re-did the modelling  locally without Sagemaker](notebooks/1_train_model.ipynb), and saved the model so that it could be applied to the medium articles.
+Sagemaker allows you to easily deploy your model as a web service, however that is overkill for our exploratory investigation. Additionally since we are comparing hundreds of articles pairwise  we would be making many thousands of model predictions. I didn't want to pay for an API endpoint to make these predictions and therefore [re-did the modelling  locally without Sagemaker](notebooks/1_train_model.ipynb).
 
-I compared the articles pairwise, ranked them and [brought back the top 5 most likely article combinations to contain plagiarism](notebooks/2_results.ipynb)
+Using this saved PyTorch model I [brought back the top 5 most likely article combinations to contain plagiarism](notebooks/2_results.ipynb)
 
 ### Methods Used
 * Webscraping (Selenium, Beautiful Soup, Docker)
@@ -88,17 +88,18 @@ First create a virtual environment and install the dependencies found in require
 To perform web scraping you will need a selenium docker image. If required install docker as per https://docs.docker.com/install/linux/docker-ce/ubuntu/.
 
 To start the selenium webserver run
+
 `sudo docker run -d --rm --name standalone-firefox -p 4444:4444 -p 5900:5900 --shm-size 2g selenium/standalone-firefox-debug:3.141.59`
 
-If you would like to see the webscraping happening on a browser (perhaps to debug or just because it looks cool) then install VNC Viewer https://www.realvnc.com/en/connect/download/viewer/ and point it at your machine. 
+If you would like to see the webscraping happening on a browser (perhaps to debug or just because it looks cool to see your browser automated) then install VNC Viewer https://www.realvnc.com/en/connect/download/viewer/ and point it at your machine. 
 
-We have separated the webscraping from the feature engineering phase, since the later is much more computationally intensive and benefits from multiple cores (we do this in parallel). So first start off with a low spec machine and launch the shell script
+We have separated the webscraping from the feature engineering phase, since the later is much more computationally intensive and benefits from multiple cores (we take advantage of parallel processing when calculating similarity features). So first start off with a low spec machine and launch the shell script
 
 `./scrape_data.sh '[logistic regression,naive bayes]' data`
 
-The first argument specifies the search term. Important to remember not to include leading spaces here. The second argument is the name of the directory that you would like to store the search results. If that directory does not exist it will be created for you.
+The first argument specifies the search terms. It is important to remember not to include leading spaces here. The second argument is the name of the directory that you would like to store the search results. If that directory does not exist it will be created for you.
 
-Having launched that scipt you will be asked to log in to medium using your twitter handle. (Before doing this please consult Mediums terms and conditions)
+Having launched that scipt you will be asked to log in to medium using your twitter handle. (Before doing this please consult Medium's terms and conditions)
 
 ![image](images/login.PNG)
 

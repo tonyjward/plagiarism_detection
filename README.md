@@ -1,5 +1,5 @@
 # Plagiarism Detection with PyTorch
-The aim of this project is to use machine learning to identify plagiarism in articles written about data science on the Medium platform. Here are some examples flagged by our neural network.
+The aim of this project is to use machine learning to identify plagiarism in articles written about Data Science on the Medium platform. Here are some examples flagged by our neural network.
 
 * **Logistic Regression:** [Article A](https://towardsdatascience.com/why-linear-regression-is-not-suitable-for-binary-classification-c64457be8e28?source=search_post) vs [Article B.](https://medium.com/@elenjubbas/linear-regression-vs-logistic-regression-for-classification-tasks-b42f85487857?source=search_post)
 
@@ -22,23 +22,23 @@ Researchers at the University of Sheffield created a corpus in which plagiarism 
 
 > **Citation for data**: Clough, P. and Stevenson, M. Developing A Corpus of Plagiarised Short Answers, Language Resources and Evaluation: Special Issue on Plagiarism and Authorship Analysis, In Press. [Download](https://ir.shef.ac.uk/cloughie/resources/plagiarism_corpus.html)
 
-The dataset contains a mixture of plagiarised and non-plagiarised answers. To create the non-plagiarised answers the Wikepedia source text was not used. For the plagiarised answers there were three levels of plagiarism
+The dataset contains a mixture of plagiarised and non-plagiarised answers. During the creation of the non-plagiarised answers the Wikepedia source text was not referred to. For the plagiarised answers there were three levels of plagiarism
 
 1) *cut:* answer copy-pasted directly from the relevant Wikipedia source text.
 2) *light:* answer based on the Wikipedia source text and includes some copying and paraphrasing.
 3) *heavy:* answer based on the Wikipedia source text but expressed using different words and structure. 
 
-For an in-depth exploraiton of the data see [here](udacity/Solutions/1_Data_Exploration.ipynb)
+To understand this data further see the section on [Data Exploration](udacity/Solutions/1_Data_Exploration.ipynb)
 
 ## Feature Engineering
 
-During the [feature engineering stage](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) I calculated two similarity metrics which were used to compare each students answers to the source text.
-1) Containment
-2) Longest Commmon Subsequence
+In the [Feature Engineering](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) stage I used two similarity metrics to compare the student answers to the Wikepedia source text. (Click on the above links to watch a 2 minute video for each metric.)
+1) [Containment](https://www.youtube.com/watch?time_continue=103&v=FwmT_7fICn0&feature=emb_logo)
+2) [Longest Commmon Subsequence](https://www.youtube.com/watch?time_continue=37&v=yxXXwBKeYvU&feature=emb_logo)
 
-Both metrics are normalized to be between zero and one. Metric definitions and a comparison of their releative strengths are provided in the feature engineering document. 
+Both metrics are normalised to be between zero and one. We would expect that plagiarised answers would have high values for one or more of these metrics.
 
-A two way scatter plot of these features against a plagiarism indicator demonstrates how powerful these features are at separating the plagiarised from the non-plagiarised answers.
+A two way scatter suggests these will be useful features in a model to predict plagiarism.
 
 ![image](images/two_way_scatter.png)
 
@@ -54,8 +54,9 @@ Sagemaker allows you to easily deploy your model as a web service, however that 
 I compared the articles pairwise, ranked them and [brought back the top 5 most likely article combinations to contain plagiarism](notebooks/2_results.ipynb)
 
 ### Methods Used
-* Webscraping (Selenium, Beautiful Soup)
-* Optimisation (OLS, Gradient Descent, Particle Swarm)
+* Webscraping (Selenium, Beautiful Soup, Docker)
+* Neural Networks (PyTorch)
+* Deployment (AWS Sagemaker)
 
 ### Technologies
 * Python
@@ -70,18 +71,30 @@ python -m unittest discover
 Anyone wanting to scrape Medium and search for plagiarism
 
 # Set up Instructions
-Create a virtual environment and install the dependencies found in requirements.txt. You may need to install PyTorch manually - to do this follow the instructions here https://pytorch.org/get-started/locally/
+First create a virtual environment and install the dependencies found in requirements.txt. You may need to install PyTorch manually - to do this follow the instructions here https://pytorch.org/get-started/locally/
 
-first run this
+To perform web scraping you will need a selenium docker image. If required install docker as per https://docs.docker.com/install/linux/docker-ce/ubuntu/.
+
+To start the selenium webserver run
 `sudo docker run -d --rm --name standalone-firefox -p 4444:4444 -p 5900:5900 --shm-size 2g selenium/standalone-firefox-debug:3.141.59`
-to start a selenium server
 
-run using
+If you would like to see the webscraping happening on a browser (perhaps to debug or just because it looks cool) then install VNC Viewer https://www.realvnc.com/en/connect/download/viewer/ and point it at your machine. 
+
+We have separated the webscraping from the feature engineering phase, since the later is much more computationally intensive and benefits from multiple cores (we do this in parallel). So first start off with a low spec machine and launch the shell script
+
 `./scrape_data.sh '[logistic regression,naive bayes]' data`
 
-Then scale up the machine
+The first argument specifies the search term. Important to remember not to include leading spaces here. The second argument is the name of the directory that you would like to store the search results. If that directory does not exist it will be created for you.
+
+Having launched that scipt you will be asked to log in to medium using your twitter handle. (Before doing this please consult Mediums terms and conditions)
+
+![image](images/login.PNG)
+
+Once the data has been downloaded it is advisable to scale up your machine with as many cores as possible. Next begin the feature engineering phase by running the following
 
 `./check_plagiarism.sh '[logistic regression,naive bayes]' data`
+
+Finally train your own PyTorch classifier by running [this notebook](notebooks/1_train_model.ipynb) and examine the results using [this notebook](notebooks/2_results.ipynb)
 
 ## Contact
 * tony@statcore.co.uk

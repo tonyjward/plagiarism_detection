@@ -113,7 +113,7 @@ Once the data has been downloaded it is advisable to scale up your machine with 
 
 A progress bar will indicate how long you will have to wait. For reference on a F series Azure virtual machine with 32 cores it took 14 hours to calculate the longest common subsequence for the xgboost articles. Containment is calculated using vectorised operations and therefore is much faster - circa 5 minutes!
 
-![image](images/progress_bar.PNG)
+![image](images/progress_bar.png)
 
 Finally train your own PyTorch classifier by running [this notebook](notebooks/1_train_model.ipynb) and examine the results using [this notebook](notebooks/2_results.ipynb)
 

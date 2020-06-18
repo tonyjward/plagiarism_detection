@@ -16,6 +16,16 @@ script, search_terms, save_dir = argv
 search_list = list(map(str, search_terms.strip('[]').split(',')))
 
 def main(search_list):
+    '''
+    Calculates the containment for a list of article pairs.
+
+    Arguments:
+        search_list (list): a list of search terms that have been manipulated using manipulate_data.py e.g. ['random forest', 'linear regression']
+
+    Returns:
+        Nothing is returned however for each search_term in search_list the following file is stored in the save_dir directory
+            <search_term>_containment.p - a pickled list containing the containment for article pairs stored in <search_term>_article_pairs.p
+    '''
     for search_term in search_list:
         try:  
             print(f"Calculating containmnet for {search_term}")

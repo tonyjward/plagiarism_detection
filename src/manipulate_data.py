@@ -11,6 +11,19 @@ script, search_terms, save_dir = argv
 search_list = list(map(str, search_terms.strip('[]').split(',')))
 
 def main(search_list):
+    '''
+    We manipulate the data so that it is in suitable format for calculating pairwise containmnet and 
+    longest common subsequnce.
+
+    Arguments:
+        search_list (list): a list of search terms that have been cleaned using clean_data.py e.g ['random forest', 'linear regression']
+
+    Returns:
+        Nothing is returned however for each search_term in search_list the following file is stored in the save_dir directory
+            <search_term>_data_dict.p - a pickled dictionary containing the following
+                                                'df' (pandas DataFrame) - all pairwise articles including author, article text etc
+                                                'article_pairs' (list)  - all pairwise articles only including article text
+    '''
 
     for search_term in search_list:
         try:

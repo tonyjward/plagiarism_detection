@@ -10,6 +10,22 @@ script, search_terms, save_dir = argv
 search_list = list(map(str, search_terms.strip('[]').split(',')))
 
 def main(search_list):
+
+    '''
+    We identify the author of the article and attempt to remove trailing content that Medium appends to all articles
+
+    Arguments:
+        search_list (list): a list of search terms that have been searched for using scrape.py ['random forest', 'linear regression']
+
+    Returns:
+        Nothing is returned however for each search_term in search_list the following file is stored in the save_dir directory
+            <search_term>_articles_clean.p - a pickled dictionary containing the following
+                                                'links_worked'  
+                                                'articles'
+                                                'author'
+                                                'junk'
+                                                'links_failed'
+    '''
     
     for search_term in search_list:
         try:

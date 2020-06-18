@@ -17,6 +17,18 @@ script, search_terms, save_dir = argv
 search_list = list(map(str, search_terms.strip('[]').split(',')))
 
 def main(search_list, pause_time = 3):
+    '''
+    Downloads Medium articles for provided search terms
+
+    Arguments:
+        search_list (list): a list of search terms that we wish to bring back Medium articles for e.g. ['random forest', 'linear regression']
+        pause_time (int) : how long to wait between calls to the the Medium website
+
+    Returns:
+        Nothing is returned however for each search_term in search_list the following files are stored in the save_dir directory
+            <search_term>_links.p - a pickled list of hyperlinks used to later retrieve articles
+            <search_term>_articles.p - a pickled list of articles relating to the above hyperlinks
+    '''
     # instantiate webdriver and log in to medium
     driver = get_driver()
     login(driver)

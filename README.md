@@ -32,9 +32,11 @@ To understand this data further see the section on [Data Exploration](udacity/So
 
 ## Feature Engineering
 
-In the [Feature Engineering](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) stage I used two similarity metrics to compare the student answers to the Wikepedia source text. (Click on the above links to watch a 2 minute video for each metric.)
+In the [Feature Engineering](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) stage I used two similarity metrics to compare the student answers to the Wikepedia source text. 
 1) [Containment](https://www.youtube.com/watch?time_continue=103&v=FwmT_7fICn0&feature=emb_logo)
 2) [Longest Commmon Subsequence](https://www.youtube.com/watch?time_continue=37&v=yxXXwBKeYvU&feature=emb_logo)
+
+The links provided above give a short two minute explanation for each metric.
 
 Both metrics are normalised to be between zero and one. We would expect that plagiarised answers would have high values for one or more of these metrics.
 
@@ -44,7 +46,9 @@ A two way scatter suggests these will be useful features in a model to predict p
 
 ## Modelling
 
-Next I used Amazon Sagemaker and PyTorch to create a single layer feed forward network [that achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb). 
+Next I used Amazon Sagemaker and PyTorch to create a neural network to predict the probaiblity plagiarism [which achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb). I used a fully connected feed forward network with 2 input units, 7 hidden layers and 1 output layer.
+
+![image](images/network_architecture.png)
 
 ## Application to Medium Articles
 Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. 

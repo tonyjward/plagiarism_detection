@@ -58,6 +58,8 @@ Since the input feature space is two dimensional we can visualise the classifica
   <img src="images/classification_boundary.png" />
 </p>
 
+Red is low probability, Blue is high.
+
 ## Application to Medium Articles
 Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. 
 

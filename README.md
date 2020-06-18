@@ -42,13 +42,21 @@ Both metrics are normalised to be between zero and one. We would expect that pla
 
 A two way scatter suggests these will be useful features in a model to predict plagiarism.
 
-![image](images/two_way_scatter.png)
+<p align="center">
+  <img src="images/two_way_scatter.png" />
+</p>
 
 ## Modelling
 
-Next I used Amazon Sagemaker and PyTorch to create a neural network to predict the probaiblity plagiarism [which achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb). I used a fully connected feed forward network with 2 input units, 7 hidden layers and 1 output layer.
+Next I used Amazon Sagemaker and PyTorch to create a neural network to predict the probaiblity plagiarism [which achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb) I used a fully connected feed forward network with 2 input units, 7 hidden layers and 1 output layer.
 
 ![image](images/network_architecture.png)
+
+Since the input feature space is two dimensional we can visualise the classification boundary.
+
+<p align="center">
+  <img src="images/classification_boundary.png" />
+</p>
 
 ## Application to Medium Articles
 Throughout the Udacity project I was itching to apply the techniques to another "real life" dataset. I thought the content sharing platform Medium would provide a rich source of data - and decided to look for plagiarism in articles written about data science. In order to do this I build a web scraper using a combination of Selelium and Beautiful soup that could log in to Medium using a twitter handle (you need a paid subscription to access all the articles) and download all articles for a specific search term. 

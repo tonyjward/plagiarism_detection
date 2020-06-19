@@ -33,8 +33,8 @@ To understand this data further see the section on [Data Exploration](udacity/So
 ## Feature Engineering
 
 In the [Feature Engineering](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) stage I used two similarity metrics to compare the student answers to the Wikepedia source text. 
-1) [Containment](https://youtu.be/FwmT_7fICn0)
-2) [Longest Commmon Subsequence](https://youtu.be/yxXXwBKeYvU)
+1) [Containment](https://youtu.be/FwmT_7fICn0) How many n-grams do the answer and source text have in common. Useful for detecting copy-paste plagiarism.
+2) [Longest Commmon Subsequence](https://youtu.be/yxXXwBKeYvU) The longest sequence of words that appear left to right in both texts. The words don't have to be exactly continuous. Useful for detecting plagiarism that uses paraphrasing.
 
 The links provided above give a short two minute explanation for each metric.
 

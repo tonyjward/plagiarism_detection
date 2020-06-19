@@ -43,7 +43,7 @@ Both metrics are normalised to be between zero and one. We would expect that pla
 A two way scatter suggests these will be useful features in a model to predict plagiarism.
 
 <p align="center">
-  <img src="images/two_way_scatter.png" />
+  <img src="images/two_way_scatter_large.png" />
 </p>
 
 ## Modelling
@@ -55,7 +55,7 @@ Next I used Amazon Sagemaker and PyTorch to create a neural network to predict t
 Since the input feature space is two dimensional we can visualise the classification boundary.
 
 <p align="center">
-  <img src="images/classification_boundary.png" />
+  <img src="images/classification_boundary_large.png" />
 </p>
 
 Red is low probability, Blue is high. We can see that high values of the features are associated with a high probability of plagiarism.

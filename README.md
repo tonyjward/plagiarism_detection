@@ -33,8 +33,8 @@ To understand this data further see the section on [Data Exploration](udacity/So
 ## Feature Engineering
 
 In the [Feature Engineering](udacity/Solutions/2_Plagiarism_Feature_Engineering.ipynb) stage I used two similarity metrics to compare the student answers to the Wikepedia source text. 
-1) [Containment](https://www.youtube.com/watch?time_continue=103&v=FwmT_7fICn0&feature=emb_logo)
-2) [Longest Commmon Subsequence](https://www.youtube.com/watch?time_continue=37&v=yxXXwBKeYvU&feature=emb_logo)
+1) [Containment](https://youtu.be/FwmT_7fICn0)
+2) [Longest Commmon Subsequence](https://youtu.be/yxXXwBKeYvU)
 
 The links provided above give a short two minute explanation for each metric.
 

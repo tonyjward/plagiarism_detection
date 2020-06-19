@@ -1,6 +1,34 @@
 # torch imports
 import torch.nn.functional as F
 import torch.nn as nn
+import torch
+
+def predict(input_data, model):
+    '''
+    Produce model predictions for some input_data using a saved PyTorch model
+
+    Arguments:
+        input_data (numpy matrix)
+        model (PyTorch model)
+    
+    Returns:
+        numpy array of model predictions
+    '''
+    print('Predicting class probabilities for the input data...')
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    # Process input_data so that it is ready to be sent to our model.
+    data = torch.from_numpy(input_data.astype('float32'))
+    data = data.to(device)
+
+    # Put the model into evaluation mode
+    model.eval()
+
+    # Predicted scores
+    probabilities = model(data).cpu().detach().numpy()
+
+    return probabilities
 
 class BinaryClassifier(nn.Module):
     """
@@ -48,3 +76,4 @@ class BinaryClassifier(nn.Module):
         x = self.sig(x)
         
         return x
+    

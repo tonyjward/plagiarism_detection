@@ -9,7 +9,7 @@ The aim of this project is to use machine learning to identify plagiarism in art
 
 * **Xgboost:** [Article A](https://towardsdatascience.com/boosting-performance-with-xgboost-b4a8deadede7?source=search_post) vs [Article B.](https://medium.com/@knoldus/machinex-boosting-performance-with-xgboost-28c9f49998a6?source=search_post)
 
-More examples can be found in the [results section](notebooks/2_results.ipynb)
+For the top 5 artcile pairs flagged by the model see [flagged articles](flagged_articles.md)
 
 # How I did it
 As part of the Udacity Machine Learning Engineer Nanodegree I was introduced to a dataset containing simulated plagiarised answers to a series of computer science questions. I used this dataset to build a binary classifier in PyTorch, which I then applied to data science articles scraped from the Medium Platform.
@@ -67,17 +67,19 @@ Throughout the Udacity project I was itching to apply the techniques to another 
 
 Sagemaker allows you to easily deploy your model as a web service, however that is overkill for our exploratory investigation. Additionally since we are comparing hundreds of articles pairwise  we would be making many thousands of model predictions. I didn't want to pay for an API endpoint to make these predictions and therefore [re-did the modelling  locally without Sagemaker](notebooks/1_train_model.ipynb).
 
-Using this saved PyTorch model I [brought back the top 5 most likely article combinations to contain plagiarism](notebooks/2_results.ipynb)
+Using this saved PyTorch model I [brought back the top 5 most likely article combinations to contain plagiarism](flagged_articles.md) [flagged articles](flagged_articles.md)
 
-### Methods Used
+Two notebooks were used in this step which can be found in the notebooks directory
+
+# Methods Used
 * Webscraping (Selenium, Beautiful Soup, Docker)
 * Neural Networks (PyTorch)
 * Deployment (AWS Sagemaker)
 
-### Technologies
+# Technologies
 * Python
 
-### Tests
+# Tests
 Tests can be run from the main directory using
 ```
 python -m unittest discover

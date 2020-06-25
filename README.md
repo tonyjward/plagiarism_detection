@@ -4,19 +4,21 @@ The aim of this project is to use machine learning to identify plagiarism in art
 I have been able to uncover LOTS of plagiarism on Medium. 
 
 ## Example 1: Exact replica
+Here we have two articles that are exactly the same - even their images.
 
 <p align="center">
   <img src="images/logistic_regression_1.png" />
 </p>
 
 ## Example 2: More nuanced copy and paste
+Here we have large sections that have been copied and pasted.
 
 <p align="center">
   <img src="images/logistic_regression_2.png" />
 </p>
 
 ## Example 3: Paraphrasing
-
+Here small changes to the wording have been made
 <p align="center">
   <img src="images/naive_bayes_2.png" />
 </p>

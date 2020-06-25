@@ -1,15 +1,25 @@
 # Plagiarism Detection with PyTorch
-The aim of this project is to use machine learning to identify plagiarism in articles written about Data Science on the Medium platform. My motivation for doing this was purely intellectual - could I do it? I have no interest in shaming/ousting people that commit plagiarism. Here are some examples flagged by our neural network.
+The aim of this project is to use machine learning to identify plagiarism in articles written about Data Science on the Medium platform. My motivation for doing this was purely intellectual - could I do it? I have no interest in shaming/ousting people that commit plagiarism.
 
-* **Logistic Regression:** [Article A](https://towardsdatascience.com/why-linear-regression-is-not-suitable-for-binary-classification-c64457be8e28?source=search_post) vs [Article B.](https://medium.com/@elenjubbas/linear-regression-vs-logistic-regression-for-classification-tasks-b42f85487857?source=search_post)
+I have been able to uncover LOTS of plagiarism on Medium. For example these two articles are practically identical - even the images are the same.
 
-* **Naive Bayes:** [Article A](https://medium.com/@mahjahnavi/natural-language-processing-an-overview-of-key-algorithms-and-their-evolution-2d9612d1f764?source=search_post) vs [Article B.](https://medium.com/reality-engines/natural-language-processing-an-overview-of-key-algorithms-and-their-evolution-3588d2cef90f?source=search_post)
+<p align="center">
+  <img src="images/logistic_regression_1.png" />
+</p>
 
-* **Random Forest:** [Article A](https://medium.com/datadriveninvestor/ensemble-learning-and-random-forest-7430ebf3da7e?source=search_post) vs [Article B.](https://medium.com/@Synced/how-random-forest-algorithm-works-in-machine-learning-3c0fe15b6674?source=search_post)
+Here we have a more nuanced copy and paste job
 
-* **Xgboost:** [Article A](https://towardsdatascience.com/boosting-performance-with-xgboost-b4a8deadede7?source=search_post) vs [Article B.](https://medium.com/@knoldus/machinex-boosting-performance-with-xgboost-28c9f49998a6?source=search_post)
+<p align="center">
+  <img src="images/logistic_regression_2.png" />
+</p>
 
-For the top 5 artcile pairs flagged by the model see [flagged articles](flagged_articles.md)
+...and here some small amount of paraphrasing going on.
+
+<p align="center">
+  <img src="images/naive_bayes_2.png" />
+</p>
+
+For the top 5 artcile pairs flagged by our model see [flagged articles](flagged_articles.md)
 
 # How I did it
 As part of the Udacity Machine Learning Engineer Nanodegree I was introduced to a dataset containing simulated plagiarised answers to a series of computer science questions. I used this dataset to build a binary classifier in PyTorch, which I then applied to data science articles scraped from the Medium Platform.

@@ -48,7 +48,7 @@ A two way scatter suggests these will be useful features in a model to predict p
 
 ## Modelling
 
-Next I used Amazon Sagemaker and PyTorch to create a neural network to predict the probaiblity plagiarism [which achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb) I used a fully connected feed forward network with 2 input units, 7 hidden layers and 1 output layer.
+Next I used Amazon Sagemaker and PyTorch to create a neural network to predict the probaiblity of plagiarism [which achieved 96% accuracy, 100% precision and 94% recall on a test set.](udacity/Solutions/3_Training_a_Model.ipynb) I used a fully connected feed forward network with 2 input units, 7 hidden layers and 1 output layer.
 
 ![image](images/network_architecture.png)
 

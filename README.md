@@ -1,19 +1,21 @@
 # Plagiarism Detection with PyTorch
 The aim of this project is to use machine learning to identify plagiarism in articles written about Data Science on the Medium platform. My motivation for doing this was purely intellectual - could I do it? I have no interest in shaming/ousting people that commit plagiarism.
 
-I have been able to uncover LOTS of plagiarism on Medium. For example these two articles are practically identical - even the images are the same.
+I have been able to uncover LOTS of plagiarism on Medium. 
+
+## Example 1: Exact replica
 
 <p align="center">
   <img src="images/logistic_regression_1.png" />
 </p>
 
-Here we have a more nuanced copy and paste job
+## Example 2: More nuanced copy and paste
 
 <p align="center">
   <img src="images/logistic_regression_2.png" />
 </p>
 
-...and here some small amount of paraphrasing going on.
+## Example 3: Paraphrasing
 
 <p align="center">
   <img src="images/naive_bayes_2.png" />
